@@ -20,6 +20,7 @@ usage = config.get("usage", [])
 contribution = config.get("contribution", "No contribution info provided.")
 license_name = config.get("license", "No license specified.")
 languages = config.get("languages", ["en"])
+ignore_list = config.get("ignore", [])
 
 # API key kontrolü
 if not YOUR_API_KEY:
@@ -29,21 +30,25 @@ if not YOUR_API_KEY:
 # Mevcut çalışma klasörü
 current_dir = os.path.abspath(os.getcwd())
 
-# Proje klasöründeki dosya ve klasörleri al (config ve script dosyalarını hariç tut)
+# Proje klasöründeki dosya ve klasörleri al (config, script ve ignore edilenleri hariç tut)
 project_files = []
 for root, dirs, files in os.walk("."):
+    # ignore edilen klasörleri tamamen atla
+    dirs[:] = [d for d in dirs if os.path.relpath(os.path.join(root, d)) not in ignore_list]
+
     for d in dirs:
         path = os.path.relpath(os.path.join(root, d))
-        if path not in [CONFIG_FILE, SCRIPT_FILE]:
+        if path not in [CONFIG_FILE, SCRIPT_FILE] and path not in ignore_list:
             project_files.append(path)
+
     for file in files:
         path = os.path.relpath(os.path.join(root, file))
-        if path not in [CONFIG_FILE, SCRIPT_FILE]:
+        if path not in [CONFIG_FILE, SCRIPT_FILE] and path not in ignore_list:
             project_files.append(path)
 
 # Eğer klasörde yalnızca config ve script varsa README oluşturmayı atla
 if not project_files:
-    print("ℹ️ No project files found (excluding config and script). README generation skipped.")
+    print("ℹ️ No project files found (excluding config, script, and ignored). README generation skipped.")
     sys.exit(0)
 
 project_file_tree = "\n".join(project_files)
@@ -52,7 +57,7 @@ project_file_tree = "\n".join(project_files)
 genai.configure(api_key=YOUR_API_KEY)
 
 # Model seçimi
-model = genai.GenerativeModel("gemini-1.5-flash")
+model = genai.GenerativeModel("gemini-2.5-flash")
 
 # README.md içeriğini birleştirecek değişken
 final_readme = f"# {project_name}\n\n"
