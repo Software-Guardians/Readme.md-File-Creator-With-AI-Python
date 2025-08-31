@@ -55,18 +55,17 @@ project_file_tree = "\n".join(project_files)
 
 # Google Gemini API anahtarını ayarla
 genai.configure(api_key=YOUR_API_KEY)
-
-# Model seçimi
 model = genai.GenerativeModel("gemini-2.5-flash")
 
-# README.md içeriğini birleştirecek değişken
+# README.md içeriğini oluşturacak değişken
 final_readme = f"# {project_name}\n\n"
 
-# Her dil için prompt gönder ve sonucu ekle
-for lang in languages:
-    prompt = f"""
+# İlk dil (ana dil) ile içerik oluştur
+main_lang = languages[0]
+
+prompt_main = f"""
 You are an expert AI technical writer. Create a professional and visually appealing README.md
-for a GitHub project, in the language: {lang}.
+for a GitHub project, in the language: {main_lang}.
 
 Project info:
 - Name: {project_name}
@@ -92,25 +91,51 @@ Rules:
 5. The output must be ready to be saved directly as a README.md file without extra wrappers.
 """
 
-    try:
-        response = model.generate_content(prompt)
-        readme_content = response.text.strip()
+try:
+    response_main = model.generate_content(prompt_main)
+    main_content = response_main.text.strip()
 
-        # Güvenlik: Başta/sonda yanlışlıkla gelen ``` bloklarını temizle
-        if readme_content.startswith("```"):
-            readme_content = readme_content.split("\n", 1)[1]
-        if readme_content.endswith("```"):
-            readme_content = readme_content.rsplit("\n", 1)[0]
+    # Güvenlik: Başta/sonda ``` bloklarını temizle
+    if main_content.startswith("```"):
+        main_content = main_content.split("\n", 1)[1]
+    if main_content.endswith("```"):
+        main_content = main_content.rsplit("\n", 1)[0]
+
+except Exception as e:
+    print(f"❌ Failed to generate README: {e}")
+    sys.exit(1)
+
+# Ana dili README'ye ekle
+final_readme += f"## {main_lang.upper()}\n\n{main_content}\n"
+
+# Diğer dillere çeviri yap
+for lang in languages[1:]:
+    prompt_translate = f"""
+Translate the following README content into {lang} while preserving formatting, headings, lists, code blocks, emojis, and badges.
+Do NOT change the content, only translate the text.
+
+Content to translate:
+{main_content}
+"""
+
+    try:
+        response_translate = model.generate_content(prompt_translate)
+        translated_content = response_translate.text.strip()
+
+        # Güvenlik: Başta/sonda ``` bloklarını temizle
+        if translated_content.startswith("```"):
+            translated_content = translated_content.split("\n", 1)[1]
+        if translated_content.endswith("```"):
+            translated_content = translated_content.rsplit("\n", 1)[0]
+
+        final_readme += f"\n---\n\n## {lang.upper()}\n\n{translated_content}\n"
 
     except Exception as e:
-        print(f"❌ Failed to generate README: {e}")
-        sys.exit(1)
-
-    # Dil başlığı ekleyip final_readme'e ekle
-    final_readme += f"\n---\n\n## {lang.upper()}\n\n{readme_content}\n"
+        print(f"❌ Failed to translate README to {lang}: {e}")
+        continue
 
 # README.md dosyasına yaz
 with open("README.md", "w", encoding="utf-8") as f:
     f.write(final_readme)
 
-print("✅ README.md file created with Google Gemini")
+print("✅ README.md file created with Google Gemini (with translations)")
