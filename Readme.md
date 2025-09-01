@@ -8,6 +8,10 @@
 **Author:** Emrullah Enis Çetinkaya  
 **Repository:** [Software-Guardians/Readme.md-File-Creator-With-AI-Python](https://github.com/Software-Guardians/Readme.md-File-Creator-With-AI-Python)
 
+> 🌍 **Multi-Language Documentation**: This README is available in both **English** and **Turkish** (Türkçe) versions. Scroll down for Turkish documentation.
+> 
+> 🌍 **Çok Dilli Dokümantasyon**: Bu README hem **İngilizce** hem de **Türkçe** versiyonlarında mevcuttur. Türkçe dokümantasyon için aşağıya kaydırın.
+
 ---
 
 ## 🌟 ENGLISH
@@ -57,7 +61,7 @@
    ├── src/                          # Your existing project files
    ├── tests/                        # Your existing project files
    ├── package.json                  # Your existing project files
-   ├── Readme.md-File-Creator-With-AI-Python/               # ← The downloaded folder goes here
+   ├── Readme-Creator/               # ← The downloaded folder goes here
    │   ├── Config.json
    │   ├── Readme.md-File-Creator.py
    │   ├── License-Creator.py
@@ -164,7 +168,7 @@ python License-Creator.py
 Your-Target-Project/
 ├── src/                          # Your existing project files
 ├── tests/                        # Your existing project files  
-├── Readme.md-File-Creator-With-AI-Python/               # README creator tool folder
+├── Readme-Creator/               # README creator tool folder
 │   ├── Config.json               # Configuration file
 │   ├── License-Creator.py        # License generation script
 │   ├── Readme.md-File-Creator.py # README generation script
@@ -288,7 +292,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
    ├── src/                          # Mevcut proje dosyalarınız
    ├── tests/                        # Mevcut proje dosyalarınız
    ├── package.json                  # Mevcut proje dosyalarınız
-   ├── Readme.md-File-Creator-With-AI-Python/               # ← İndirilen klasör buraya gelir
+   ├── Readme-Creator/               # ← İndirilen klasör buraya gelir
    │   ├── Config.json
    │   ├── Readme.md-File-Creator.py
    │   ├── License-Creator.py
@@ -395,7 +399,7 @@ python License-Creator.py
 Hedef-Projeniz/
 ├── src/                          # Mevcut proje dosyalarınız
 ├── tests/                        # Mevcut proje dosyalarınız
-├── Readme.md-File-Creator-With-AI-Python/               # README creator araç klasörü
+├── Readme-Creator/               # README creator araç klasörü
 │   ├── Config.json               # Yapılandırma dosyası
 │   ├── License-Creator.py        # Lisans oluşturma scripti
 │   ├── Readme.md-File-Creator.py # README oluşturma scripti
