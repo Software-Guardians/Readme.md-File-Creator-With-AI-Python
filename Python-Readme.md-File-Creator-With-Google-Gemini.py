@@ -57,6 +57,19 @@ project_file_tree = "\n".join(project_files)
 genai.configure(api_key=YOUR_API_KEY)
 model = genai.GenerativeModel("gemini-2.5-flash")
 
+# Kod bloğu kontrol ve düzeltme fonksiyonu
+def fix_code_blocks(text: str) -> str:
+    """
+    Eğer README içeriğinde ``` ile başlayan ama kapanmayan kod blokları varsa
+    sonuna ``` ekler.
+    """
+    if not text:
+        return text
+    open_count = text.count("```")
+    if open_count % 2 != 0:
+        text += "\n```"
+    return text.strip()
+
 # README.md içeriğini oluşturacak değişken
 final_readme = f"# {project_name}\n\n"
 
@@ -101,6 +114,9 @@ try:
     if main_content.endswith("```"):
         main_content = main_content.rsplit("\n", 1)[0]
 
+    # Kod bloklarını kapat
+    main_content = fix_code_blocks(main_content)
+
 except Exception as e:
     print(f"❌ Failed to generate README: {e}")
     sys.exit(1)
@@ -127,6 +143,9 @@ Content to translate:
             translated_content = translated_content.split("\n", 1)[1]
         if translated_content.endswith("```"):
             translated_content = translated_content.rsplit("\n", 1)[0]
+
+        # Kod bloklarını kapat
+        translated_content = fix_code_blocks(translated_content)
 
         final_readme += f"\n---\n\n## {lang.upper()}\n\n{translated_content}\n"
 
