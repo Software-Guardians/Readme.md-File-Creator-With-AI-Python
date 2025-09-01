@@ -37,22 +37,55 @@
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/Software-Guardians/Readme.md-File-Creator-With-AI-Python.git
-   cd Readme.md-File-Creator-With-AI-Python
    ```
 
-2. **Install required packages:**
+2. **Move the downloaded folder to your target project:**
+   ```bash
+   # Navigate to your target project directory
+   cd /path/to/your/target-project
+   
+   # Move the entire README creator folder into your project
+   mv /path/to/Readme.md-File-Creator-With-AI-Python ./Readme-Creator
+   
+   # Or copy if you want to keep the original
+   cp -r /path/to/Readme.md-File-Creator-With-AI-Python ./Readme-Creator
+   ```
+
+   **Your project structure should look like this:**
+   ```
+   Your-Target-Project/
+   ├── src/                          # Your existing project files
+   ├── tests/                        # Your existing project files
+   ├── package.json                  # Your existing project files
+   ├── Readme.md-File-Creator-With-AI-Python/               # ← The downloaded folder goes here
+   │   ├── Config.json
+   │   ├── Readme.md-File-Creator.py
+   │   ├── License-Creator.py
+   │   ├── RUN.py
+   │   └── Licenses/
+   ├── README.md                     # ← Will be generated here
+   └── LICENSE                       # ← Will be generated here
+   ```
+
+3. **Install required packages:**
    ```bash
    pip install google-generativeai
    ```
 
-3. **Get your Google Gemini API key:**
+4. **Get your Google Gemini API key:**
    - Visit [Google AI Studio](https://ai.google.dev/)
    - Create an account and generate an API key
    - Keep it secure for configuration
 
 ### ⚙️ Configuration
 
-Edit the `Config.json` file with your project details:
+Navigate to the `Readme-Creator` folder and edit the `Config.json` file with your project details:
+
+```bash
+cd Readme-Creator
+```
+
+Edit `Config.json`:
 
 ```json
 {
@@ -80,7 +113,7 @@ Edit the `Config.json` file with your project details:
   "contribution": "Guidelines for contributing to the project.",
   "license": "MIT",
   "languages": ["en", "tr"],
-  "ignore": ["venv", "__pycache__", ".git", "secret.txt"]
+  "ignore": ["venv", "__pycache__", ".git", "secret.txt", "Readme-Creator"]
 }
 ```
 
@@ -100,56 +133,59 @@ Edit the `Config.json` file with your project details:
 - `contribution`: Contribution guidelines
 - `license`: License type (affects license file generation)
 - `languages`: Languages for README (first is primary)
-- `ignore`: Files/folders to ignore during project scan
+- `ignore`: Files/folders to ignore during project scan (add "Readme-Creator" to ignore the tool folder)
 
 ### 🎯 Usage
 
 #### Method 1: Run All (Recommended)
+Navigate to the Readme-Creator folder and run:
 ```bash
+cd Readme-Creator
 python RUN.py
 ```
-This will generate both README.md and LICENSE files simultaneously.
+This will generate both README.md and LICENSE files in your main project directory.
 
 #### Method 2: Individual Scripts
 Generate only README:
 ```bash
+cd Readme-Creator
 python Readme.md-File-Creator.py
 ```
 
 Generate only LICENSE:
 ```bash
+cd Readme-Creator
 python License-Creator.py
 ```
 
 ### 📁 Project Structure
 
 ```
-Readme.md-File-Creator-With-AI-Python/
-├── Config.json                    # Configuration file
-├── License-Creator.py            # License generation script
-├── Readme.md-File-Creator.py     # README generation script
-├── RUN.py                        # Main execution script
-├── Licenses/                     # License templates directory (comes with defaults)
-│   ├── Apache-License-2.0.txt   # Apache 2.0 license template
-│   ├── MIT.txt                   # MIT license template
-│   ├── GNU-GPLv3.txt           # GNU GPL v3 license template
-│   ├── GNU-LGPLv3.txt          # GNU LGPL v3 license template
-│   ├── GNU-AGPLv3.txt          # GNU AGPL v3 license template
-│   ├── Boost-Software-License-1.0.txt # Boost Software license template
-│   ├── Mozilla-Public-License-2.0.txt # Mozilla Public license template
-│   └── The-Unlicense.txt         # The Unlicense template
+Your-Target-Project/
+├── src/                          # Your existing project files
+├── tests/                        # Your existing project files  
+├── Readme.md-File-Creator-With-AI-Python/               # README creator tool folder
+│   ├── Config.json               # Configuration file
+│   ├── License-Creator.py        # License generation script
+│   ├── Readme.md-File-Creator.py # README generation script
+│   ├── RUN.py                    # Main execution script
+│   └── Licenses/                 # License templates directory
+│       ├── Apache-License-2.0.txt
+│       ├── MIT.txt
+│       ├── GNU-GPLv3.txt
+│       └── ... (other license templates)
 ├── README.md                     # Generated README (output)
 └── LICENSE                       # Generated LICENSE (output)
 ```
 
 ### 🔧 How It Works
 
-1. **Configuration Reading**: Scripts read your project details from `Config.json`
-2. **Project Analysis**: The tool scans your project directory and creates a file tree
+1. **Configuration Reading**: Scripts read your project details from `Readme-Creator/Config.json`
+2. **Project Analysis**: The tool scans your main project directory (excluding the Readme-Creator folder) and creates a file tree
 3. **AI Generation**: Google Gemini AI generates professional README content based on your project
 4. **Multi-Language Support**: Content is translated to specified languages
 5. **License Creation**: Appropriate license file is copied from templates
-6. **File Output**: README.md and LICENSE files are created in your project root
+6. **File Output**: README.md and LICENSE files are created in your main project root directory
 
 ### 🤝 Contributing
 
@@ -173,7 +209,7 @@ The tool comes with pre-installed license templates:
 - **Mozilla Public License 2.0** ✅
 - **The Unlicense** ✅
 
-*All license templates are included in the `Licenses/` directory by default.*
+*All license templates are included in the `Readme-Creator/Licenses/` directory by default.*
 
 ### 🚨 Error Handling
 
@@ -188,9 +224,9 @@ The tool includes comprehensive error handling for:
 ### 🎨 Customization
 
 You can customize the generated README by:
-- Modifying the AI prompts in `Readme.md-File-Creator.py`
-- Adding new license templates to the `Licenses/` directory
-- Adjusting the ignore list in `Config.json`
+- Modifying the AI prompts in `Readme-Creator/Readme.md-File-Creator.py`
+- Adding new license templates to the `Readme-Creator/Licenses/` directory
+- Adjusting the ignore list in `Readme-Creator/Config.json` (remember to keep "Readme-Creator" in the ignore list)
 - Adding more languages to the `languages` array
 
 ### 📄 License
@@ -232,22 +268,55 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 1. **Repository'yi klonlayın:**
    ```bash
    git clone https://github.com/Software-Guardians/Readme.md-File-Creator-With-AI-Python.git
-   cd Readme.md-File-Creator-With-AI-Python
    ```
 
-2. **Gerekli paketleri kurun:**
+2. **İndirilen klasörü hedef projenize taşıyın:**
+   ```bash
+   # Hedef proje dizininize gidin
+   cd /path/to/your/hedef-proje
+   
+   # README creator klasörünü projenize taşıyın
+   mv /path/to/Readme.md-File-Creator-With-AI-Python ./Readme-Creator
+   
+   # Ya da kopyalamak isterseniz
+   cp -r /path/to/Readme.md-File-Creator-With-AI-Python ./Readme-Creator
+   ```
+
+   **Proje yapınız şu şekilde görünmelidir:**
+   ```
+   Hedef-Projeniz/
+   ├── src/                          # Mevcut proje dosyalarınız
+   ├── tests/                        # Mevcut proje dosyalarınız
+   ├── package.json                  # Mevcut proje dosyalarınız
+   ├── Readme.md-File-Creator-With-AI-Python/               # ← İndirilen klasör buraya gelir
+   │   ├── Config.json
+   │   ├── Readme.md-File-Creator.py
+   │   ├── License-Creator.py
+   │   ├── RUN.py
+   │   └── Licenses/
+   ├── README.md                     # ← Burada oluşturulacak
+   └── LICENSE                       # ← Burada oluşturulacak
+   ```
+
+3. **Gerekli paketleri kurun:**
    ```bash
    pip install google-generativeai
    ```
 
-3. **Google Gemini API anahtarınızı alın:**
+4. **Google Gemini API anahtarınızı alın:**
    - [Google AI Studio](https://ai.google.dev/)'yu ziyaret edin
    - Hesap oluşturun ve API anahtarı oluşturun
    - Yapılandırma için güvenli tutun
 
 ### ⚙️ Yapılandırma
 
-`Config.json` dosyasını proje detaylarınızla düzenleyin:
+`Readme-Creator` klasörüne gidin ve `Config.json` dosyasını proje detaylarınızla düzenleyin:
+
+```bash
+cd Readme-Creator
+```
+
+`Config.json`'ı düzenleyin:
 
 ```json
 {
@@ -275,12 +344,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
   "contribution": "Projeye katkıda bulunma rehberi.",
   "license": "MIT",
   "languages": ["en", "tr"],
-  "ignore": ["venv", "__pycache__", ".git", "secret.txt"]
+  "ignore": ["venv", "__pycache__", ".git", "secret.txt", "Readme-Creator"]
 }
 ```
 
 #### Zorunlu Alanlar ⚠️
-- `API`: Google Gemini API anahtarınız **(ZORUNLu)**
+- `API`: Google Gemini API anahtarınız **(ZORUNLU)**
 - `github_repository`: GitHub repository URL'niz **(ZORUNLU)**
 - `Author`: Adınız **(ZORUNLU)**
 
@@ -295,56 +364,59 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - `contribution`: Katkı rehberi
 - `license`: Lisans türü (lisans dosyası oluşturmayı etkiler)
 - `languages`: README dilleri (ilki ana dildir)
-- `ignore`: Proje taraması sırasında yoksayılacak dosyalar/klasörler
+- `ignore`: Proje taraması sırasında yoksayılacak dosyalar/klasörler ("Readme-Creator"ı ignore listesine ekleyin)
 
 ### 🎯 Kullanım
 
 #### Yöntem 1: Hepsini Çalıştır (Önerilen)
+Readme-Creator klasörüne gidin ve çalıştırın:
 ```bash
+cd Readme-Creator
 python RUN.py
 ```
-Bu hem README.md hem de LICENSE dosyalarını aynı anda oluşturacaktır.
+Bu hem README.md hem de LICENSE dosyalarını ana proje dizininizde oluşturacaktır.
 
 #### Yöntem 2: Tekil Scriptler
 Sadece README oluştur:
 ```bash
+cd Readme-Creator
 python Readme.md-File-Creator.py
 ```
 
 Sadece LICENSE oluştur:
 ```bash
+cd Readme-Creator
 python License-Creator.py
 ```
 
 ### 📁 Proje Yapısı
 
 ```
-Readme.md-File-Creator-With-AI-Python/
-├── Config.json                    # Yapılandırma dosyası
-├── License-Creator.py            # Lisans oluşturma scripti
-├── Readme.md-File-Creator.py     # README oluşturma scripti
-├── RUN.py                        # Ana çalıştırma scripti
-├── Licenses/                     # Lisans şablonları dizini (varsayılan gelir)
-│   ├── Apache-License-2.0.txt   # Apache 2.0 lisans şablonu
-│   ├── MIT.txt                   # MIT lisans şablonu
-│   ├── GNU-GPLv3.txt           # GNU GPL v3 lisans şablonu
-│   ├── GNU-LGPLv3.txt          # GNU LGPL v3 lisans şablonu
-│   ├── GNU-AGPLv3.txt          # GNU AGPL v3 lisans şablonu
-│   ├── Boost-Software-License-1.0.txt # Boost Software lisans şablonu
-│   ├── Mozilla-Public-License-2.0.txt # Mozilla Public lisans şablonu
-│   └── The-Unlicense.txt         # The Unlicense şablonu
+Hedef-Projeniz/
+├── src/                          # Mevcut proje dosyalarınız
+├── tests/                        # Mevcut proje dosyalarınız
+├── Readme.md-File-Creator-With-AI-Python/               # README creator araç klasörü
+│   ├── Config.json               # Yapılandırma dosyası
+│   ├── License-Creator.py        # Lisans oluşturma scripti
+│   ├── Readme.md-File-Creator.py # README oluşturma scripti
+│   ├── RUN.py                    # Ana çalıştırma scripti
+│   └── Licenses/                 # Lisans şablonları dizini
+│       ├── Apache-License-2.0.txt
+│       ├── MIT.txt
+│       ├── GNU-GPLv3.txt
+│       └── ... (diğer lisans şablonları)
 ├── README.md                     # Oluşturulan README (çıktı)
 └── LICENSE                       # Oluşturulan LICENSE (çıktı)
 ```
 
 ### 🔧 Nasıl Çalışır
 
-1. **Yapılandırma Okuma**: Scriptler proje detaylarınızı `Config.json`'dan okur
-2. **Proje Analizi**: Araç proje dizininizi tarar ve dosya ağacı oluşturur
+1. **Yapılandırma Okuma**: Scriptler proje detaylarınızı `Readme-Creator/Config.json`'dan okur
+2. **Proje Analizi**: Araç ana proje dizininizi (Readme-Creator klasörü hariç) tarar ve dosya ağacı oluşturur
 3. **AI Oluşturma**: Google Gemini AI projenize dayalı profesyonel README içeriği oluşturur
 4. **Çoklu Dil Desteği**: İçerik belirtilen dillere çevrilir
 5. **Lisans Oluşturma**: Uygun lisans dosyası şablonlardan kopyalanır
-6. **Dosya Çıktısı**: README.md ve LICENSE dosyları proje kök dizininizde oluşturulur
+6. **Dosya Çıktısı**: README.md ve LICENSE dosyları ana proje kök dizininizde oluşturulur
 
 ### 🤝 Katkıda Bulunma
 
@@ -368,7 +440,7 @@ Araç önceden kurulmuş lisans şablonları ile gelir:
 - **Mozilla Public License 2.0** ✅
 - **The Unlicense** ✅
 
-*Tüm lisans şablonları varsayılan olarak `Licenses/` dizininde bulunur.*
+*Tüm lisans şablonları varsayılan olarak `Readme-Creator/Licenses/` dizininde bulunur.*
 
 ### 🚨 Hata Yönetimi
 
@@ -383,9 +455,9 @@ Araç kapsamlı hata yönetimi içerir:
 ### 🎨 Özelleştirme
 
 Oluşturulan README'yi şu şekillerde özelleştirebilirsiniz:
-- `Readme.md-File-Creator.py`'deki AI promptlarını değiştirerek
-- `Licenses/` dizinine yeni lisans şablonları ekleyerek
-- `Config.json`'daki ignore listesini ayarlayarak
+- `Readme-Creator/Readme.md-File-Creator.py`'deki AI promptlarını değiştirerek
+- `Readme-Creator/Licenses/` dizinine yeni lisans şablonları ekleyerek
+- `Readme-Creator/Config.json`'daki ignore listesini ayarlayarak ("Readme-Creator"ı ignore listesinde tutmayı unutmayın)
 - `languages` dizisine daha fazla dil ekleyerek
 
 ### 📄 Lisans
