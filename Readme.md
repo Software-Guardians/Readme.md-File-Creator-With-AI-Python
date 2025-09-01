@@ -49,10 +49,10 @@
    cd /path/to/your/target-project
    
    # Move the entire README creator folder into your project
-   mv /path/to/Readme.md-File-Creator-With-AI-Python ./Readme-Creator
+   mv /path/to/Readme.md-File-Creator-With-AI-Python ./Readme.md-File-Creator-With-AI-Python
    
    # Or copy if you want to keep the original
-   cp -r /path/to/Readme.md-File-Creator-With-AI-Python ./Readme-Creator
+   cp -r /path/to/Readme.md-File-Creator-With-AI-Python ./Readme.md-File-Creator-With-AI-Python
    ```
 
    **Your project structure should look like this:**
@@ -61,7 +61,7 @@
    ├── src/                          # Your existing project files
    ├── tests/                        # Your existing project files
    ├── package.json                  # Your existing project files
-   ├── Readme-Creator/               # ← The downloaded folder goes here
+   ├── Readme.md-File-Creator-With-AI-Python/               # ← The downloaded folder goes here
    │   ├── Config.json
    │   ├── Readme.md-File-Creator.py
    │   ├── License-Creator.py
@@ -86,7 +86,7 @@
 Navigate to the `Readme-Creator` folder and edit the `Config.json` file with your project details:
 
 ```bash
-cd Readme-Creator
+cd Readme.md-File-Creator-With-AI-Python
 ```
 
 Edit `Config.json`:
@@ -144,7 +144,7 @@ Edit `Config.json`:
 #### Method 1: Run All (Recommended)
 Navigate to the Readme-Creator folder and run:
 ```bash
-cd Readme-Creator
+cd Readme.md-File-Creator-With-AI-Python
 python RUN.py
 ```
 This will generate both README.md and LICENSE files in your main project directory.
@@ -152,13 +152,13 @@ This will generate both README.md and LICENSE files in your main project directo
 #### Method 2: Individual Scripts
 Generate only README:
 ```bash
-cd Readme-Creator
+cd Readme.md-File-Creator-With-AI-Python
 python Readme.md-File-Creator.py
 ```
 
 Generate only LICENSE:
 ```bash
-cd Readme-Creator
+cd Readme.md-File-Creator-With-AI-Python
 python License-Creator.py
 ```
 
@@ -168,7 +168,7 @@ python License-Creator.py
 Your-Target-Project/
 ├── src/                          # Your existing project files
 ├── tests/                        # Your existing project files  
-├── Readme-Creator/               # README creator tool folder
+├── Readme.md-File-Creator-With-AI-Python/               # README creator tool folder
 │   ├── Config.json               # Configuration file
 │   ├── License-Creator.py        # License generation script
 │   ├── Readme.md-File-Creator.py # README generation script
@@ -184,7 +184,7 @@ Your-Target-Project/
 
 ### 🔧 How It Works
 
-1. **Configuration Reading**: Scripts read your project details from `Readme-Creator/Config.json`
+1. **Configuration Reading**: Scripts read your project details from `Readme.md-File-Creator-With-AI-Python/Config.json`
 2. **Project Analysis**: The tool scans your main project directory (excluding the Readme-Creator folder) and creates a file tree
 3. **AI Generation**: Google Gemini AI generates professional README content based on your project
 4. **Multi-Language Support**: Content is translated to specified languages
@@ -213,7 +213,7 @@ The tool comes with pre-installed license templates:
 - **Mozilla Public License 2.0** ✅
 - **The Unlicense** ✅
 
-*All license templates are included in the `Readme-Creator/Licenses/` directory by default.*
+*All license templates are included in the `Readme.md-File-Creator-With-AI-Python/Licenses/` directory by default.*
 
 ### 🚨 Error Handling
 
@@ -228,9 +228,9 @@ The tool includes comprehensive error handling for:
 ### 🎨 Customization
 
 You can customize the generated README by:
-- Modifying the AI prompts in `Readme-Creator/Readme.md-File-Creator.py`
-- Adding new license templates to the `Readme-Creator/Licenses/` directory
-- Adjusting the ignore list in `Readme-Creator/Config.json` (remember to keep "Readme-Creator" in the ignore list)
+- Modifying the AI prompts in `Readme.md-File-Creator-With-AI-Python/Readme.md-File-Creator.py`
+- Adding new license templates to the `Readme.md-File-Creator-With-AI-Python/Licenses/` directory
+- Adjusting the ignore list in `Readme.md-File-Creator-With-AI-Python/Config.json` (remember to keep "Readme.md-File-Creator-With-AI-Python-master" in the ignore list)
 - Adding more languages to the `languages` array
 
 ### 📄 License
@@ -280,10 +280,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
    cd /path/to/your/hedef-proje
    
    # README creator klasörünü projenize taşıyın
-   mv /path/to/Readme.md-File-Creator-With-AI-Python ./Readme-Creator
+   mv /path/to/Readme.md-File-Creator-With-AI-Python ./Readme.md-File-Creator-With-AI-Python
    
    # Ya da kopyalamak isterseniz
-   cp -r /path/to/Readme.md-File-Creator-With-AI-Python ./Readme-Creator
+   cp -r /path/to/Readme.md-File-Creator-With-AI-Python ./Readme.md-File-Creator-With-AI-Python
    ```
 
    **Proje yapınız şu şekilde görünmelidir:**
@@ -292,7 +292,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
    ├── src/                          # Mevcut proje dosyalarınız
    ├── tests/                        # Mevcut proje dosyalarınız
    ├── package.json                  # Mevcut proje dosyalarınız
-   ├── Readme-Creator/               # ← İndirilen klasör buraya gelir
+   ├── Readme.md-File-Creator-With-AI-Python/               # ← İndirilen klasör buraya gelir
    │   ├── Config.json
    │   ├── Readme.md-File-Creator.py
    │   ├── License-Creator.py
@@ -314,10 +314,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ### ⚙️ Yapılandırma
 
-`Readme-Creator` klasörüne gidin ve `Config.json` dosyasını proje detaylarınızla düzenleyin:
+`Readme.md-File-Creator-With-AI-Python` klasörüne gidin ve `Config.json` dosyasını proje detaylarınızla düzenleyin:
 
 ```bash
-cd Readme-Creator
+cd Readme.md-File-Creator-With-AI-Python
 ```
 
 `Config.json`'ı düzenleyin:
@@ -375,7 +375,7 @@ cd Readme-Creator
 #### Yöntem 1: Hepsini Çalıştır (Önerilen)
 Readme-Creator klasörüne gidin ve çalıştırın:
 ```bash
-cd Readme-Creator
+cd Readme.md-File-Creator-With-AI-Python
 python RUN.py
 ```
 Bu hem README.md hem de LICENSE dosyalarını ana proje dizininizde oluşturacaktır.
@@ -383,13 +383,13 @@ Bu hem README.md hem de LICENSE dosyalarını ana proje dizininizde oluşturacak
 #### Yöntem 2: Tekil Scriptler
 Sadece README oluştur:
 ```bash
-cd Readme-Creator
+cd Readme.md-File-Creator-With-AI-Python
 python Readme.md-File-Creator.py
 ```
 
 Sadece LICENSE oluştur:
 ```bash
-cd Readme-Creator
+cd Readme.md-File-Creator-With-AI-Python
 python License-Creator.py
 ```
 
@@ -399,7 +399,7 @@ python License-Creator.py
 Hedef-Projeniz/
 ├── src/                          # Mevcut proje dosyalarınız
 ├── tests/                        # Mevcut proje dosyalarınız
-├── Readme-Creator/               # README creator araç klasörü
+├── Readme.md-File-Creator-With-AI-Python/               # README creator araç klasörü
 │   ├── Config.json               # Yapılandırma dosyası
 │   ├── License-Creator.py        # Lisans oluşturma scripti
 │   ├── Readme.md-File-Creator.py # README oluşturma scripti
@@ -459,9 +459,9 @@ Araç kapsamlı hata yönetimi içerir:
 ### 🎨 Özelleştirme
 
 Oluşturulan README'yi şu şekillerde özelleştirebilirsiniz:
-- `Readme-Creator/Readme.md-File-Creator.py`'deki AI promptlarını değiştirerek
-- `Readme-Creator/Licenses/` dizinine yeni lisans şablonları ekleyerek
-- `Readme-Creator/Config.json`'daki ignore listesini ayarlayarak ("Readme-Creator"ı ignore listesinde tutmayı unutmayın)
+- `Readme.md-File-Creator-With-AI-Python/Readme.md-File-Creator.py`'deki AI promptlarını değiştirerek
+- `Readme.md-File-Creator-With-AI-Python/Licenses/` dizinine yeni lisans şablonları ekleyerek
+- `Readme.md-File-Creator-With-AI-Python/Config.json`'daki ignore listesini ayarlayarak ("Readme-Creator"ı ignore listesinde tutmayı unutmayın)
 - `languages` dizisine daha fazla dil ekleyerek
 
 ### 📄 Lisans
