@@ -5,7 +5,7 @@ import sys
 # Dosya adları
 CONFIG_FILE = "Config.json"
 LICENSES_DIR = "Licenses"
-OUTPUT_LICENSE_FILE = "LICENSE"
+OUTPUT_LICENSE_FILE = "../LICENSE"
 
 def CreateLicense():
     # JSON dosyasını oku
