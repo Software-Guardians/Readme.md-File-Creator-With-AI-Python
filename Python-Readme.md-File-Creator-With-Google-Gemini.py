@@ -22,9 +22,22 @@ license_name = config.get("license", "No license specified.")
 languages = config.get("languages", ["en"])
 ignore_list = config.get("ignore", [])
 
-# API key kontrolü
+# Yeni eklenen alanlar
+github_repository = config.get("github_repository", "").strip()
+author = config.get("Author", "").strip()
+date = config.get("Date", "").strip()
+
+# Zorunlu alan kontrolleri
 if not YOUR_API_KEY:
     print("❌ API key has not been provided. Please add your API key in the JSON config.")
+    sys.exit(1)
+
+if not github_repository:
+    print("❌ GitHub repository URL has not been provided. Please add 'github_repository' in the JSON config.")
+    sys.exit(1)
+
+if not author:
+    print("❌ Author has not been provided. Please add 'Author' in the JSON config.")
     sys.exit(1)
 
 # Mevcut çalışma klasörü
@@ -89,6 +102,9 @@ Project info:
 - Usage: {', '.join(usage) if usage else 'No usage info provided.'}
 - Contribution: {contribution}
 - License: {license_name}
+- GitHub Repository: {github_repository}
+- Author: {author}
+- Date: {date if date else 'Not specified'}
 
 Project file structure:
 {project_file_tree}
@@ -97,7 +113,7 @@ Project directory:
 {current_dir}
 
 Rules:
-1. Include all relevant sections (Description, Features, Installation, Usage, Contribution, License, Project Structure).
+1. Include all relevant sections (Description, Features, Installation, Usage, Contribution, License, Project Structure, Repository, Author, Date).
 2. If some sections are missing, generate content intelligently based on project topic.
 3. Format with Markdown: headings, lists, code blocks, emojis, badges.
 4. Output the README content as plain Markdown (do NOT wrap it in triple backticks or markdown code fences).
