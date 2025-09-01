@@ -13,7 +13,7 @@
   "usage": [
   ],
   "contribution": "Guidelines for contributing to the project.",
-  "license": "MIT",
+  "license": "Apache-License-2.0",
   "languages": ["en","tr"],
   "ignore": ["venv", "__pycache__",".git", "secret.txt"]
 }
