@@ -4,8 +4,8 @@ import sys
 import google.generativeai as genai
 
 # JSON dosyasını oku
-CONFIG_FILE = "Python-Readme.md-Creator-Config.json"
-SCRIPT_FILE = "Python-Readme.md-File-Creator-With-Google-Gemini.py"
+CONFIG_FILE = "Config.json"
+SCRIPT_FILE = "Readme.md-File-Creator.py"
 
 with open(CONFIG_FILE, "r", encoding="utf-8") as f:
     config = json.load(f)

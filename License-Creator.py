@@ -3,7 +3,7 @@ import json
 import sys
 
 # Dosya adları
-CONFIG_FILE = "Python-Readme.md-Creator-Config.json"
+CONFIG_FILE = "Config.json"
 LICENSES_DIR = "Licenses"
 OUTPUT_LICENSE_FILE = "LICENSE"
 
