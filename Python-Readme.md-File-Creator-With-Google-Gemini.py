@@ -40,22 +40,23 @@ if not author:
     print("❌ Author has not been provided. Please add 'Author' in the JSON config.")
     sys.exit(1)
 
-# Mevcut çalışma klasörü
+# Mevcut çalışma klasörü (script'in bulunduğu)
 current_dir = os.path.abspath(os.getcwd())
+parent_dir = os.path.dirname(current_dir)  # Bir üst klasör
 
 # Proje klasöründeki dosya ve klasörleri al (config, script ve ignore edilenleri hariç tut)
 project_files = []
-for root, dirs, files in os.walk("."):
+for root, dirs, files in os.walk(parent_dir):
     # ignore edilen klasörleri tamamen atla
-    dirs[:] = [d for d in dirs if os.path.relpath(os.path.join(root, d)) not in ignore_list]
+    dirs[:] = [d for d in dirs if os.path.relpath(os.path.join(root, d), parent_dir) not in ignore_list]
 
     for d in dirs:
-        path = os.path.relpath(os.path.join(root, d))
+        path = os.path.relpath(os.path.join(root, d), parent_dir)
         if path not in [CONFIG_FILE, SCRIPT_FILE] and path not in ignore_list:
             project_files.append(path)
 
     for file in files:
-        path = os.path.relpath(os.path.join(root, file))
+        path = os.path.relpath(os.path.join(root, file), parent_dir)
         if path not in [CONFIG_FILE, SCRIPT_FILE] and path not in ignore_list:
             project_files.append(path)
 
@@ -110,7 +111,7 @@ Project file structure:
 {project_file_tree}
 
 Project directory:
-{current_dir}
+{parent_dir}
 
 Rules:
 1. Include all relevant sections (Description, Features, Installation, Usage, Contribution, License, Project Structure, Repository, Author, Date).
@@ -170,7 +171,7 @@ Content to translate:
         continue
 
 # README.md dosyasına yaz
-with open("README.md", "w", encoding="utf-8") as f:
+with open("../README.md", "w", encoding="utf-8") as f:
     f.write(final_readme)
 
 print("✅ README.md file created with Google Gemini (with translations)")
